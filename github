@@ -1,0 +1,107 @@
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Structure to hold information about the resume
+struct Resume {
+    string name;
+    string email;
+    string phone;
+    string objective;
+    vector<string> skills;
+    vector<string> education;
+    vector<string> workExperience;
+};
+
+// Function to input resume details
+void inputResumeDetails(Resume &r) {
+    // Personal details
+    cout << "Enter your name: ";
+    getline(cin, r.name);
+
+    cout << "Enter your email: ";
+    getline(cin, r.email);
+
+    cout << "Enter your phone number: ";
+    getline(cin, r.phone);
+
+    cout << "Enter your career objective: ";
+    getline(cin, r.objective);
+
+    // Skills
+    int numSkills;
+    cout << "Enter the number of skills: ";
+    cin >> numSkills;
+    cin.ignore();  // to clear the newline character left in the buffer
+
+    for (int i = 0; i < numSkills; i++) {
+        string skill;
+        cout << "Enter skill #" << (i + 1) << ": ";
+        getline(cin, skill);
+        r.skills.push_back(skill);
+    }
+
+    // Education
+    int numEducation;
+    cout << "Enter the number of education qualifications: ";
+    cin >> numEducation;
+    cin.ignore();  // to clear the newline character left in the buffer
+
+    for (int i = 0; i < numEducation; i++) {
+        string educationDetail;
+        cout << "Enter education #" << (i + 1) << ": ";
+        getline(cin, educationDetail);
+        r.education.push_back(educationDetail);
+    }
+
+    // Work experience
+    int numExperience;
+    cout << "Enter the number of work experiences: ";
+    cin >> numExperience;
+    cin.ignore();  // to clear the newline character left in the buffer
+
+    for (int i = 0; i < numExperience; i++) {
+        string workDetail;
+        cout << "Enter work experience #" << (i + 1) << ": ";
+        getline(cin, workDetail);
+        r.workExperience.push_back(workDetail);
+    }
+}
+
+// Function to display resume
+void displayResume(const Resume &r) {
+    cout << "\n********** Resume **********\n";
+    cout << "Name: " << r.name << endl;
+    cout << "Email: " << r.email << endl;
+    cout << "Phone: " << r.phone << endl;
+    cout << "Career Objective: " << r.objective << endl;
+
+    cout << "\nSkills: \n";
+    for (const string &skill : r.skills) {
+        cout << "- " << skill << endl;
+    }
+
+    cout << "\nEducation: \n";
+    for (const string &edu : r.education) {
+        cout << "- " << edu << endl;
+    }
+
+    cout << "\nWork Experience: \n";
+    for (const string &work : r.workExperience) {
+        cout << "- " << work << endl;
+    }
+
+    cout << "*****************************\n";
+}
+
+int main() {
+    Resume myResume;
+
+    inputResumeDetails(myResume);  // Take user input for resume details
+    displayResume(myResume);       // Display the resume
+
+    return 0;
+}
